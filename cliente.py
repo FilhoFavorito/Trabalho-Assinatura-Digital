@@ -1,9 +1,3 @@
-# Criar conta e depois Transação
-import json
-
-# Criar conta e depois Transação
-import json
-
 import json
 import os
 
