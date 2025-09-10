@@ -1,55 +1,29 @@
 import json
 import os
 
-def criarConta():
-    cpf = input("Digite seu CPF: ")
-    nome = input("Digite seu nome completo: ")
-    senha = input("Crie sua senha: ")
-    saldo = 1000
-
-    novo_cliente = {
-        "nome": nome,
-        "senha": senha,
-        "saldo": saldo
-    }
-
+def gravarDados(dados_cliente,caminho,cpf):
+    
     # Carrega os dados existentes
-    if os.path.exists("clientes.json"):
-        with open("clientes.json", "r", encoding="utf-8") as file:
+    if os.path.exists(caminho):
+        with open(caminho, "r", encoding="utf-8") as file:
             dados = json.load(file)
     else:
         dados = {}
 
-    # Verifica se o CPF já está cadastrado
-    if cpf in dados:
-        print("⚠️  Já existe uma conta com esse CPF.")
-        return
 
     # Adiciona novo cliente
-    dados[cpf] = novo_cliente
+    dados[cpf] = dados_cliente
 
     # Salva os dados atualizados
-    with open("clientes.json", "w", encoding="utf-8") as file:
+    with open(caminho, "w", encoding="utf-8") as file:
         json.dump(dados, file, indent=4, ensure_ascii=False)
 
-    print("✅ Conta criada com sucesso!")
+novo_cliente = {
+    "nome":"Gabriel",
+    "saldo": 1337
+}
 
+cpf = "1234"
 
-
-def logarConta():
-    pass
-
-def fazerTransacao():
-    pass
-
-criarConta()
-
-
-def logarConta():
-    pass
-
-def fazerTransacao():
-    pass
-
-criarConta()
-
+gravarDados(novo_cliente, "servidor.json", cpf)
+gravarDados(novo_cliente, "cliente.json", cpf)
